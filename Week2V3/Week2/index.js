@@ -1,9 +1,11 @@
 'use strict';
 
+import team from './team.js';
+
 console.log("test");
 
 let arrPokemons = [];
-let newPokList = [];
+let testArr = [];
 
 class Pokemon {
     constructor(name, number, image, type) {
@@ -11,26 +13,27 @@ class Pokemon {
         this.number = number;
         this.image = image;
         this.type = type;
-
     }
 }
 
 function fetchData() {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-        .then(response => response.json())
+        .then(response => {
+            return response.json();
+        })
         .then(data => {
-            console.log("test");
+            
             data.results.forEach(element => {
-                //arrPokemons.push(element);
-
                 //TWEEDE FETCH VOOR MEER INFO
                 fetch(element.url)
-                    .then(response => response.json())
+                    .then(response => {
+                        return response.json();
+                    })
                     .then(data => {
                         //console.log("data twee", data);
-                        //console.log("id ", data.types);
+                        //console.log("id ", data.types
+                        testArr.push(data.name);
                         arrPokemons.push(new Pokemon(data.name, data.id, data.sprites.front_default, data.types));
-                        newPokList.push(element);
                     });
             });
         });
@@ -41,12 +44,37 @@ displayData();
 
 function displayData() {
     console.log("DATA ", arrPokemons);
-    console.log("Data2 ", newPokList);
-    /*
-    let html = "";
-    let arrayLengte = arrPokemons.length;
-    console.log(arrayLengte);
-    */
+    let team1 = new team();
+
+    //Team oefening
+    document.getElementById('team').innerHTML = team1.describe();
+    console.log("Describe", team1.describe);
+
+
+}
+
+
+function displayHTML() {
+
+    let html;
+    for (let i = 0; i < arrPokemons.length; i++) {
+        html += `
+        <img src="${arrPokemons[i].image}" alt="">
+        <p class="number">${arrPokemons[i].number}</p>
+        <h3>${arrPokemons[i].name}</h3>
+        `;
+
+        //Type toevoegen
+        for (let y = 0; y <= arrPokemons[i].type.length; y++) {
+            html += `
+            <div>
+            <p class="type1" id="${arrPokemons[i].type[y]}>${arrPokemons[i].type[y]}</p>
+        </div>
+        `;
+        }
+        //Button toevoegen op het einde
+        html += `<button id="add">Button</button>`;
+    }
 
 
 }
