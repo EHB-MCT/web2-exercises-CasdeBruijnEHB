@@ -1,0 +1,26 @@
+{
+  "name": "casdboefweb",
+  "version": "1.0.0",
+  "description": "Oefeningen web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EHB-MCT/web2-exercises-CasdeBruijnEHB.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EHB-MCT/web2-exercises-CasdeBruijnEHB/issues"
+  },
+  "homepage": "https://github.com/EHB-MCT/web2-exercises-CasdeBruijnEHB#readme",
+  "dependencies": {
+    "cleave.js": "^1.6.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.1"
+  }
+}
